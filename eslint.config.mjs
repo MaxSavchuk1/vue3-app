@@ -14,5 +14,10 @@ export default [
       tsx: false,
       jsx: false
     }
-  })
+  }),
+  {
+    rules: {
+      "@typescript-eslint/no-explicit-any": "off"
+    }
+  }
 ]
