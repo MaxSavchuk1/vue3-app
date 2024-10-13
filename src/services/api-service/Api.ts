@@ -3,7 +3,7 @@ import axios, {
   AxiosRequestConfig,
   AxiosRequestHeaders
 } from 'axios'
-import { IApiOptions } from '../../helpers/types'
+import { IApiOptions } from '@/helpers/types'
 
 class Api {
   controller?: AbortController

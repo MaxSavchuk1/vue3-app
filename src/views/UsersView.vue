@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import api from '../api'
-import UsersListItem from '../components/UsersListItem.vue'
-import { User } from '../helpers/types'
+import api from '@/api'
+import UsersListItem from '@/components/UsersListItem.vue'
+import { User } from '@/helpers/types'
 
 const users = ref<User[]>([])
 

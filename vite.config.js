@@ -8,17 +8,14 @@ export default defineConfig({
   base: './',
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src')
+      '@': resolve(__dirname, './src')
+    }
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler'
+      }
     }
   }
-  // css: {
-  //   preprocessorOptions: {
-  //     scss: {
-  //       additionalData: `@use "@/style/_variables.scss" as *;`
-  //     }
-  //   }
-  // },
-  // server: {
-  //   host: "0.0.0.0"
-  // }
 })
