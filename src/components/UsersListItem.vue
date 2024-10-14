@@ -10,14 +10,21 @@ defineProps({
 <template>
   <li class="users-list--item">
     <div>{{ user.firstName }} {{ user.lastName }}, {{ user.age }} y.o.</div>
-    <router-link :to="`/users/${user.id}`">View</router-link>
+    <router-link :to="`/users/${user.id}`"
+      ><i class="ri-arrow-right-wide-fill"></i
+    ></router-link>
   </li>
 </template>
 
 <style lang="scss" scoped>
 .users-list--item {
-  padding: 15px;
   display: flex;
+  justify-content: space-between;
   gap: 15px;
+  width: min(400px, 95%);
+  a {
+    text-decoration: none;
+    color: black;
+  }
 }
 </style>
