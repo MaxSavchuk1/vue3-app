@@ -26,5 +26,10 @@ export default [
         props: true
       }
     ]
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'notFound',
+    component: () => import('@/views/NotFoundView.vue')
   }
 ]

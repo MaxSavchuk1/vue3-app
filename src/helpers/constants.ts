@@ -5,3 +5,5 @@ export const sidebarLinkList = [
   { name: 'Products', path: '/products' },
   { name: 'Users', path: '/users' }
 ]
+
+export const FETCH_LIMIT = 15
