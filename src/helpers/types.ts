@@ -7,6 +7,7 @@ export interface IApiOptions {
   responseType?: ResponseType
   dataOnly?: boolean
   signal?: AbortController
+  silent?: boolean
   onRequest?: (...args: any[]) => any
   onSuccess?: (...args: any[]) => any
   onError?: (...args: any[]) => any

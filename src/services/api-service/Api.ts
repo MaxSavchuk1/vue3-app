@@ -19,6 +19,7 @@ class Api {
   dataOnly: IApiOptions['dataOnly']
   timeout: IApiOptions['timeout']
   signal: IApiOptions['signal']
+  silent: IApiOptions['silent']
   headers: IApiOptions['headers'] = {
     Accept: 'application/json',
     'Content-Type': 'application/json'
@@ -33,6 +34,7 @@ class Api {
     this.baseURL = options.baseURL || '/'
     this.responseType = options.responseType || 'json'
     this.dataOnly = options.dataOnly ?? true
+    this.silent = options.silent ?? false
     this.timeout = options.timeout || 120000
     this.signal = options.signal
     this.headers = {
@@ -106,6 +108,9 @@ class Api {
       config => {
         config.headers = this.headers as AxiosRequestHeaders
         this.onRequest?.()
+        if (!this.silent) {
+          useLoaderStore().show()
+        }
         return config
       },
       error => {
@@ -129,6 +134,9 @@ class Api {
         }
         if (this.onFinally) {
           await this.onFinally(result)
+        }
+        if (!this.silent) {
+          useLoaderStore().hide()
         }
         return Promise.resolve(result)
       },

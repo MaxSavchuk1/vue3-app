@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
 import api from '@/api'
 
 const props = defineProps<{ id: string }>()
