@@ -3,10 +3,10 @@ import { IApiOptions } from '../helpers/types'
 
 export default {
   getUsersPaginated: (
-    options: IApiOptions,
-    params?: { limit?: number; skip?: number }
+    params: { limit?: number; skip?: number },
+    options: IApiOptions
   ) => {
-    const limit = params?.limit || 30
+    const limit = params?.limit || 15
     const skip = params?.skip || 0
     const select = ['id', 'firstName', 'lastName', 'age']
 
@@ -15,6 +15,9 @@ export default {
     )
   },
 
-  getUser: (options: IApiOptions, id: string | number) =>
-    api(options).get(`/users/${id}`)
+  getUser: (id: string, options: IApiOptions) =>
+    api(options).get(`/users/${id}`),
+
+  searchUsers: (query: string, options: IApiOptions) =>
+    api(options).get(`/users/search?q=${query}`)
 }
