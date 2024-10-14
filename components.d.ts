@@ -8,6 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     ElSkeleton: typeof import('element-plus/es')['ElSkeleton']
+    Loader: typeof import('./src/stores/loader.ts')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     UsersListItem: typeof import('./src/components/UsersListItem.vue')['default']

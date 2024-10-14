@@ -10,10 +10,16 @@ export default defineConfig({
   plugins: [
     vue(),
     AutoImport({
-      resolvers: [ElementPlusResolver()]
+      resolvers: [ElementPlusResolver()],
+      imports: ['vue', 'pinia', 'vue-router'],
+      dirs: ['src/components', 'src/stores'],
+      dts: true
     }),
     Components({
-      resolvers: [ElementPlusResolver()]
+      resolvers: [ElementPlusResolver()],
+      extensions: ['vue', 'ts'],
+      deep: true,
+      dts: true
     })
   ],
   base: './',
