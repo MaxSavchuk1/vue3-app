@@ -10,7 +10,7 @@ const isHomePage = computed(() => {
 <template>
   <SideBar />
 
-  <main class="container">
+  <main class="main-container">
     <div v-if="isHomePage" class="welcome-banner">
       <span>Vue 3 example project with TypeScript</span>
     </div>

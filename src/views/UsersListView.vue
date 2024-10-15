@@ -7,6 +7,9 @@ const usersList = ref<User[]>([])
 const total = ref(0)
 const skip = ref(0)
 const search = ref('')
+const currentPage = ref(1)
+
+const router = useRouter()
 
 const setUsers = (data: { total: number; skip: number; users: User[] }) => {
   usersList.value = data.users
@@ -34,11 +37,20 @@ const triggerFetch = async () => {
 }
 
 const pageChangeHandler = (selectedPage: number) => {
+  currentPage.value = selectedPage
   skip.value = (selectedPage - 1) * limit
   triggerFetch()
 }
 
-watchDebounced(search, triggerFetch, { debounce: 500 })
+watchDebounced(
+  search,
+  () => {
+    skip.value = 0
+    currentPage.value = 1
+    triggerFetch()
+  },
+  { debounce: 500 }
+)
 
 onMounted(async () => {
   try {
@@ -50,28 +62,30 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="users-list-container">
-    <el-input
-      v-model="search"
-      style="width: 400px"
-      placeholder="Search users"
-      clearable
-    />
-
+  <div class="users-list-container page-container">
     <h2 style="font-size: 30px">Users</h2>
+
+    <el-input v-model="search" placeholder="Type to search users" clearable />
 
     <el-table
       :data="usersList"
-      style="width: min(600px, 95%)"
+      style="width: min(650px, 95%)"
       empty-text="No users found"
+      @row-click="
+        (row: User) => router.push({ name: 'User', params: { id: row.id } })
+      "
     >
       <el-table-column prop="id" label="id" width="60" />
       <el-table-column prop="firstName" label="First name" />
       <el-table-column prop="lastName" label="Last name" />
       <el-table-column prop="age" label="Age" width="60" />
+      <el-table-column width="75">
+        <span class="show-user">Show</span>
+      </el-table-column>
     </el-table>
 
     <el-pagination
+      v-model:current-page="currentPage"
       background
       layout="prev, pager, next"
       :page-size="limit"
@@ -86,10 +100,18 @@ onMounted(async () => {
 .users-list-container {
   display: flex;
   flex-direction: column;
-  gap: 35px;
-  padding: 30px;
-}
-.users-list > * + * {
-  margin-top: 20px;
+  gap: 30px;
+
+  :deep(.el-table__row) {
+    cursor: pointer;
+  }
+  :deep(.show-user) {
+    font-size: 0.9em;
+    color: blue;
+    text-decoration: underline;
+  }
+  .el-input {
+    width: min(400px, 95%);
+  }
 }
 </style>

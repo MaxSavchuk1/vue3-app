@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="container not-found">
+  <div class="main-container not-found">
     <h2>404</h2>
   </div>
 </template>
