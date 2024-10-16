@@ -35,3 +35,37 @@ body,
   font-size: 2em;
   font-weight: 600;
 }
+
+#scroll-plug {
+  position: absolute;
+  height: 100px;
+}
+.scroll-to-top-button {
+  position: fixed;
+  z-index: 10;
+  bottom: 40px;
+  right: 40px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: $orange-500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1.5em;
+
+  &:hover {
+    background-color: $orange-700;
+  }
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform 0.3s ease;
+}
+
+.slide-enter-from,
+.slide-leave-to {
+  transform: translateY(100px);
+}
