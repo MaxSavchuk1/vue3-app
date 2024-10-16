@@ -6,7 +6,7 @@ export interface IApiOptions {
   headers?: RawAxiosRequestHeaders
   responseType?: ResponseType
   dataOnly?: boolean
-  signal?: AbortController
+  signal?: AbortSignal
   silent?: boolean
   onRequest?: (...args: any[]) => any
   onSuccess?: (...args: any[]) => any
@@ -78,4 +78,11 @@ export type UserFull = User & {
     network: string
   }
   role: 'admin' | 'moderator' | 'user'
+}
+
+export type Product = {
+  id: string | number
+  title: string
+  price: number
+  thumbnail: string
 }

@@ -93,12 +93,12 @@ class Api {
   }
 
   private defineService() {
-    this.controller = this.signal || new AbortController()
+    this.controller = new AbortController()
     this.service = axios.create({
       baseURL: this.baseURL,
       responseType: this.responseType,
       timeout: this.timeout,
-      signal: this.controller.signal
+      signal: this.signal || this.controller.signal
     })
     return this
   }

@@ -1,15 +1,14 @@
 <script setup lang="ts">
 import api from '@/api'
 import { User } from '@/helpers/types'
-import { FETCH_LIMIT as limit } from '@/helpers/constants'
+import { USERS_FETCH_LIMIT as limit } from '@/helpers/constants'
+
+const { getSignal } = useAbortOnLeave()
+const { skip, currentPage, total, handleChangePage } = usePagination()
+const router = useRouter()
 
 const usersList = ref<User[]>([])
-const total = ref(0)
-const skip = ref(0)
 const search = ref('')
-const currentPage = ref(1)
-
-const router = useRouter()
 
 const setUsers = (data: { total: number; skip: number; users: User[] }) => {
   usersList.value = data.users
@@ -18,12 +17,13 @@ const setUsers = (data: { total: number; skip: number; users: User[] }) => {
 }
 
 const fetchUsers = () =>
-  api.getUsersPaginated(skip.value, {
-    onSuccess: setUsers
+  api.users.getUsersPaginated(skip.value, {
+    onSuccess: setUsers,
+    signal: getSignal()
   })
 
 const searchUsers = () =>
-  api.searchUsers(search.value.trim(), skip.value, {
+  api.users.searchUsers(search.value.trim(), skip.value, {
     onSuccess: setUsers
   })
 
@@ -37,9 +37,7 @@ const triggerFetch = async () => {
 }
 
 const pageChangeHandler = (selectedPage: number) => {
-  currentPage.value = selectedPage
-  skip.value = (selectedPage - 1) * limit
-  triggerFetch()
+  handleChangePage(selectedPage, limit, triggerFetch)
 }
 
 watchDebounced(
@@ -84,14 +82,11 @@ onMounted(async () => {
       </el-table-column>
     </el-table>
 
-    <el-pagination
-      v-model:current-page="currentPage"
-      background
-      layout="prev, pager, next"
-      :page-size="limit"
+    <base-pagination
+      v-model="currentPage"
       :total="total"
-      :hide-on-single-page="total <= limit"
-      @change="pageChangeHandler"
+      :limit="limit"
+      @handle-change="pageChangeHandler"
     />
   </div>
 </template>

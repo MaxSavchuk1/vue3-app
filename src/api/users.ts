@@ -1,8 +1,9 @@
 import api from '@/services/api-service'
 import { IApiOptions } from '@/helpers/types'
-import { FETCH_LIMIT as limit } from '@/helpers/constants'
-
-const select = ['id', 'firstName', 'lastName', 'age']
+import {
+  USERS_FETCH_LIMIT as limit,
+  USERS_SELECTED_FIELDS as select
+} from '@/helpers/constants'
 
 export default {
   getUsersPaginated: (skip: number, options: IApiOptions) =>

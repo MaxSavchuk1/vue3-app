@@ -11,7 +11,7 @@ export default defineConfig({
     AutoImport({
       resolvers: [ElementPlusResolver()],
       imports: ['vue', 'pinia', 'vue-router', '@vueuse/core'],
-      dirs: ['src/components', 'src/stores'],
+      dirs: ['src/components', 'src/stores', 'src/composables'],
       dts: true
     }),
     Components({
