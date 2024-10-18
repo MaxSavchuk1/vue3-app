@@ -36,7 +36,7 @@ const userInfo = computed(() => {
 })
 
 const getUserData = () => {
-  return api.getUser(props.id, {
+  return api.users.getUser(props.id, {
     onSuccess: res => {
       user.value = res
     }
