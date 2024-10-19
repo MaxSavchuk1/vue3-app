@@ -14,7 +14,10 @@ const imageLoaded = () => {
   <div class="product-item-container">
     <el-skeleton v-if="loading" style="width: 100%" loading animated>
       <template #template>
-        <el-skeleton-item variant="image" style="width: 100%; height: 200px" />
+        <el-skeleton-item
+          variant="image"
+          style="width: 100%; height: 200px; margin-bottom: 6px"
+        />
         <el-skeleton-item variant="text" style="width: 100%" />
         <el-skeleton-item variant="text" style="width: 50%" />
       </template>
@@ -35,6 +38,7 @@ const imageLoaded = () => {
 .product-item-container {
   padding: 8px;
   width: 100%;
+  height: 100%;
 
   &:hover {
     cursor: pointer;
@@ -47,6 +51,9 @@ const imageLoaded = () => {
   }
 
   .product-item {
+    h3 {
+      font-weight: 700;
+    }
     img {
       aspect-ratio: 1 / 1;
       width: 100%;

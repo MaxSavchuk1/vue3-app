@@ -86,3 +86,14 @@ export type Product = {
   price: number
   thumbnail: string
 }
+
+export type ProductsCategory = {
+  slug: string
+  name: string
+  url: string
+}
+
+export type ProductFilter = {
+  sortBy?: string
+  order?: string
+}

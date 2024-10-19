@@ -1,25 +1,84 @@
 <script setup lang="ts">
+import { omit } from 'lodash-es'
 import api from '@/api'
-import { Product } from '@/helpers/types'
+import { Product, ProductFilter } from '@/helpers/types'
+import { PRODUCTS_FETCH_LIMIT as limit } from '@/helpers/constants'
 
-const products = ref<Product[]>([])
-const skip = ref(0)
+const productsList = ref<Product[]>([])
+const category = ref<string | undefined>()
+const filter = ref<ProductFilter>({})
 
-onMounted(() => {
-  api.products.getProductsPaginated(skip.value, {
-    onSuccess: res => {
-      products.value = res.products
+const { skip, currentPage, total, handleChangePage } = usePagination()
+
+const setProducts = (data: {
+  total: number
+  skip: number
+  products: Product[]
+}) => {
+  productsList.value = data.products
+  total.value = data.total
+  skip.value = data.skip
+}
+
+const fetchProducts = () => {
+  const options = {
+    onSuccess: (res: any) => {
+      setProducts(res)
     }
-  })
+  }
+  if (category.value) {
+    return api.products.getProductsByCategoryPaginated(
+      category.value,
+      filter.value,
+      options
+    )
+  }
+  return api.products.getProductsPaginated(
+    { skip: skip.value, ...filter.value },
+    options
+  )
+}
+
+const pageChangeHandler = (selectedPage: number) => {
+  handleChangePage(selectedPage, limit, fetchProducts)
+}
+
+const updateFilter = (data: any) => {
+  category.value = data.category
+  filter.value = omit(data, 'category')
+}
+
+watch([category, filter], async () => {
+  skip.value = 0
+  currentPage.value = 1
+  await fetchProducts()
+})
+
+onMounted(async () => {
+  try {
+    await fetchProducts()
+  } catch (error) {
+    console.error(error)
+  }
 })
 </script>
 
 <template>
   <div class="page-container products-list-container">
     <h2 style="font-size: 30px">Products</h2>
+
+    <ProductsFilter @updateFilter="updateFilter" />
+
     <div class="products-list">
-      <ProductItem v-for="product in products" :key="product.id" :product />
+      <ProductItem v-for="product in productsList" :key="product.id" :product />
     </div>
+
+    <base-pagination
+      v-model="currentPage"
+      :total="total"
+      :limit="limit"
+      @handle-change="pageChangeHandler"
+    />
   </div>
 </template>
 
