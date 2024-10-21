@@ -97,3 +97,5 @@ export type ProductFilter = {
   sortBy?: string
   order?: string
 }
+
+export type Query = Record<string, string | number | string[] | undefined>

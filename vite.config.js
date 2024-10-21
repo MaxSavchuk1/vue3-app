@@ -11,14 +11,14 @@ export default defineConfig({
     AutoImport({
       resolvers: [ElementPlusResolver()],
       imports: ['vue', 'pinia', 'vue-router', '@vueuse/core'],
-      dirs: ['src/components', 'src/stores', 'src/composables'],
-      dts: true
+      dirs: ['src/components', 'src/stores', 'src/composables', 'src/utils'],
+      dts: 'src/auto-imports.d.ts'
     }),
     Components({
       resolvers: [ElementPlusResolver()],
       extensions: ['vue', 'ts'],
       deep: true,
-      dts: true
+      dts: 'src/components.d.ts'
     })
   ],
   base: './',

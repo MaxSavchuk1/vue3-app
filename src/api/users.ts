@@ -7,15 +7,13 @@ import {
 
 export default {
   getUsersPaginated: (skip: number, options: IApiOptions) =>
-    api(options).get(
-      `/users?limit=${limit}&skip=${skip}&select=${select.join(',')}`
-    ),
+    api(options).get(`/users?${useQueryString({ limit, select, skip })}`),
 
   getUser: (id: string, options: IApiOptions) =>
     api(options).get(`/users/${id}`),
 
-  searchUsers: (query: string, skip: number, options: IApiOptions) =>
+  searchUsers: (searchQuery: string, skip: number, options: IApiOptions) =>
     api(options).get(
-      `/users/search?q=${query}&limit=${limit}&skip=${skip}&select=${select.join(',')}`
+      `/users/search?${useQueryString({ q: searchQuery, limit, skip, select })}`
     )
 }

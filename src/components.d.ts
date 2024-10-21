@@ -7,8 +7,8 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    BasePagination: typeof import('./src/components/BasePagination.vue')['default']
-    ButtonToTop: typeof import('./src/components/ButtonToTop.vue')['default']
+    BasePagination: typeof import('./components/BasePagination.vue')['default']
+    ButtonToTop: typeof import('./components/ButtonToTop.vue')['default']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElDescriptions: typeof import('element-plus/es')['ElDescriptions']
     ElDescriptionsItem: typeof import('element-plus/es')['ElDescriptionsItem']
@@ -21,11 +21,11 @@ declare module 'vue' {
     ElSkeletonItem: typeof import('element-plus/es')['ElSkeletonItem']
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
-    ProductItem: typeof import('./src/components/ProductItem.vue')['default']
-    ProductsFilter: typeof import('./src/components/ProductsFilter.vue')['default']
+    ProductItem: typeof import('./components/ProductItem.vue')['default']
+    ProductsFilter: typeof import('./components/ProductsFilter.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    SideBar: typeof import('./src/components/SideBar.vue')['default']
-    UsersListItem: typeof import('./src/components/UsersListItem.vue')['default']
+    SideBar: typeof import('./components/SideBar.vue')['default']
+    UsersListItem: typeof import('./components/UsersListItem.vue')['default']
   }
 }
