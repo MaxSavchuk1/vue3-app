@@ -3,6 +3,8 @@ import { Product } from '@/helpers/types'
 
 defineProps<{ product: Product }>()
 
+const router = useRouter()
+
 const loading = ref(true)
 
 const imageLoaded = () => {
@@ -11,7 +13,10 @@ const imageLoaded = () => {
 </script>
 
 <template>
-  <div class="product-item-container">
+  <div
+    class="product-item-container"
+    @click="router.push({ name: 'Product', params: { id: product.id } })"
+  >
     <el-skeleton v-if="loading" style="width: 100%" loading animated>
       <template #template>
         <el-skeleton-item

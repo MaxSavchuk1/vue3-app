@@ -1,5 +1,6 @@
 import MainLayout from '@/layouts/MainLayout.vue'
 import ProductsView from '@/views/ProductsView.vue'
+import ProductView from '@/views/ProductView.vue'
 import UsersListView from '@/views/UsersListView.vue'
 import UserView from '@/views/UserView.vue'
 
@@ -13,6 +14,12 @@ export default [
         path: '/products',
         name: 'Products',
         component: ProductsView
+      },
+      {
+        path: '/products/:id',
+        name: 'Product',
+        component: ProductView,
+        props: true
       },
       {
         path: '/users',

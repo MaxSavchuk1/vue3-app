@@ -147,6 +147,7 @@ class Api {
         if (this.onFinally) {
           this.onFinally(error)
         }
+        useLoaderStore().hide()
         return Promise.reject(error)
       }
     )

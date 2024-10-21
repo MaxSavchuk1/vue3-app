@@ -90,7 +90,7 @@ onMounted(async () => {
 }
 .products-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, 200px);
   grid-auto-rows: minmax(300px, auto);
   place-items: center;
 }

@@ -23,7 +23,7 @@ export default {
   },
 
   getSingleProduct: (id: string, options: IApiOptions) =>
-    api(options).get(`/users/${id}`),
+    api(options).get(`/products/${id}`),
 
   searchProducts: (searchQuery: string, skip: number, options: IApiOptions) =>
     api(options).get(
