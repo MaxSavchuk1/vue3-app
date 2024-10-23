@@ -1,12 +1,12 @@
 import api from '@/services/api-service'
-import { IApiOptions, Query } from '@/helpers/types'
+import { ApiOptions, Query } from '@/helpers/types'
 import {
   PRODUCTS_FETCH_LIMIT as limit,
   PRODUCTS_SELECTED_FIELDS as select
 } from '@/helpers/constants'
 
 export default {
-  getProductsPaginated: (query: Query, options: IApiOptions) => {
+  getProductsPaginated: (query: Query, options: ApiOptions) => {
     return api(options).get(
       `/products?${useQueryString({ limit, select, ...query })}`
     )
@@ -15,21 +15,21 @@ export default {
   getProductsByCategoryPaginated: (
     category: string,
     query: Query,
-    options: IApiOptions
+    options: ApiOptions
   ) => {
     return api(options).get(
       `/products/category/${category}?${useQueryString(query)}`
     )
   },
 
-  getSingleProduct: (id: string, options: IApiOptions) =>
+  getSingleProduct: (id: string, options: ApiOptions) =>
     api(options).get(`/products/${id}`),
 
-  searchProducts: (searchQuery: string, skip: number, options: IApiOptions) =>
+  searchProducts: (searchQuery: string, skip: number, options: ApiOptions) =>
     api(options).get(
       `/products/search?${useQueryString({ q: searchQuery, limit, skip, select })}`
     ),
 
-  getPrpoductsCategories: (options: IApiOptions) =>
+  getPrpoductsCategories: (options: ApiOptions) =>
     api(options).get('/products/categories')
 }

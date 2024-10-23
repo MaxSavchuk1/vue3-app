@@ -3,29 +3,29 @@ import axios, {
   AxiosRequestConfig,
   AxiosRequestHeaders
 } from 'axios'
-import { IApiOptions } from '@/helpers/types'
+import { ApiOptions } from '@/helpers/types'
 
 class Api {
   controller?: AbortController
   service?: AxiosInstance
   requestConfig?: AxiosRequestConfig
-  onRequest: IApiOptions['onRequest']
-  onSuccess: IApiOptions['onSuccess']
-  onError: IApiOptions['onError']
-  onFinally: IApiOptions['onFinally']
-  wrapResponse: IApiOptions['wrapResponse']
-  baseURL: IApiOptions['baseURL']
-  responseType: IApiOptions['responseType']
-  dataOnly: IApiOptions['dataOnly']
-  timeout: IApiOptions['timeout']
-  signal: IApiOptions['signal']
-  silent: IApiOptions['silent']
-  headers: IApiOptions['headers'] = {
+  onRequest: ApiOptions['onRequest']
+  onSuccess: ApiOptions['onSuccess']
+  onError: ApiOptions['onError']
+  onFinally: ApiOptions['onFinally']
+  wrapResponse: ApiOptions['wrapResponse']
+  baseURL: ApiOptions['baseURL']
+  responseType: ApiOptions['responseType']
+  dataOnly: ApiOptions['dataOnly']
+  timeout: ApiOptions['timeout']
+  signal: ApiOptions['signal']
+  silent: ApiOptions['silent']
+  headers: ApiOptions['headers'] = {
     Accept: 'application/json',
     'Content-Type': 'application/json'
   }
 
-  constructor(options: IApiOptions = {}) {
+  constructor(options: ApiOptions = {}) {
     this.onRequest = options?.onRequest?.bind(this)
     this.onSuccess = options?.onSuccess?.bind(this)
     this.onError = options?.onError?.bind(this)

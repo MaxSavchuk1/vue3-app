@@ -1,8 +1,8 @@
 import Api from './Api'
-import { IApiOptions } from '@/helpers/types'
+import { ApiOptions } from '@/helpers/types'
 import { DUMMYJSON_BASE_URL } from '@/helpers/constants'
 
-const api = (options: IApiOptions) =>
+const api = (options: ApiOptions) =>
   new Api({ baseURL: DUMMYJSON_BASE_URL, ...options })
 
 export default api

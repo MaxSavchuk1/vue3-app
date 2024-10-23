@@ -1,6 +1,6 @@
 import { RawAxiosRequestHeaders, ResponseType } from 'axios'
 
-export interface IApiOptions {
+export type ApiOptions = {
   baseURL?: string
   timeout?: number
   headers?: RawAxiosRequestHeaders
@@ -85,6 +85,22 @@ export type Product = {
   title: string
   price: number
   thumbnail: string
+}
+
+export type ProductFull = Product & {
+  brand?: string
+  category?: string
+  description?: string
+  dimentions?: {
+    height: number
+    width: number
+    depth: number
+  }
+  discountPercentage?: number
+  images?: string[]
+  rating?: number
+  stock?: number
+  tags?: string[]
 }
 
 export type ProductsCategory = {
