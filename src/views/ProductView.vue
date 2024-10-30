@@ -29,11 +29,7 @@ onMounted(async () => {
       <div class="product-general-info">
         <div class="carousel">
           <el-carousel trigger="click" height="320px" :autoplay="false">
-            <el-carousel-item
-              v-for="(image, i) in product?.images"
-              :key="image"
-              :label="i + 1"
-            >
+            <el-carousel-item v-for="image in product?.images" :key="image">
               <BaseImage :src="image" height="320px" />
             </el-carousel-item>
           </el-carousel>
@@ -84,18 +80,20 @@ onMounted(async () => {
       .carousel {
         width: 400px;
 
+        :deep(.el-carousel__indicator) {
+          padding: 0;
+        }
+
         :deep(.el-carousel__button) {
           padding: 0;
           background-color: unset;
-          margin: 0 4px;
-          span {
-            display: block;
-            background-color: lightgray;
-            width: 16px;
-            height: 16px;
-            line-height: 1.4em;
-            border-radius: 50%;
-          }
+          margin: 0 6px;
+          background-color: lightgray;
+          border: 1px solid white;
+          width: 10px;
+          height: 10px;
+          line-height: 1.4em;
+          border-radius: 50%;
         }
       }
 
