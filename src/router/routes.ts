@@ -1,42 +1,38 @@
-import MainLayout from '@/layouts/MainLayout.vue'
-import ProductsView from '@/views/ProductsView.vue'
-import ProductView from '@/views/ProductView.vue'
-import UsersListView from '@/views/UsersListView.vue'
-import UserView from '@/views/UserView.vue'
+import { RouteRecordRaw } from 'vue-router'
 
-export default [
+const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    name: 'MainLayout',
-    component: MainLayout,
-    children: [
-      {
-        path: '/products',
-        name: 'Products',
-        component: ProductsView
-      },
-      {
-        path: '/products/:id',
-        name: 'Product',
-        component: ProductView,
-        props: true
-      },
-      {
-        path: '/users',
-        name: 'Users',
-        component: UsersListView
-      },
-      {
-        path: '/users/:id',
-        name: 'User',
-        component: UserView,
-        props: true
-      }
-    ]
+    name: 'Home',
+    component: () => import('@/views/HomeView.vue')
   },
   {
     path: '/:pathMatch(.*)*',
-    name: 'notFound',
+    name: 'NotFound',
     component: () => import('@/views/NotFoundView.vue')
+  },
+  {
+    path: '/products',
+    name: 'Products',
+    component: () => import('@/views/ProductsListView.vue')
+  },
+  {
+    path: '/products/:id',
+    name: 'Product',
+    component: () => import('@/views/ProductView.vue'),
+    props: true
+  },
+  {
+    path: '/users',
+    name: 'Users',
+    component: () => import('@/views/UsersListView.vue')
+  },
+  {
+    path: '/users/:id',
+    name: 'User',
+    component: () => import('@/views/UserView.vue'),
+    props: true
   }
 ]
+
+export default routes

@@ -1,13 +1,9 @@
 <script setup lang="ts">
-const { isLoading } = storeToRefs(useLoaderStore())
 const route = useRoute()
+const { isLoading } = storeToRefs(useLoaderStore())
 
 const target = ref(null)
 const targetIsVisible = ref(false)
-
-const isHomePage = computed(() => {
-  return route.path === '/'
-})
 
 const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -21,14 +17,9 @@ useIntersectionObserver(target, ([{ isIntersecting }]) => {
 <template>
   <div id="scroll-plug" ref="target"></div>
 
-  <SideBar />
-
-  <main class="main-container">
-    <div v-if="isHomePage" class="welcome-banner">
-      <span>Vue 3 example project with TypeScript</span>
-    </div>
-    <router-view />
-  </main>
+  <component :is="route.meta.layoutComponent">
+    <slot />
+  </component>
 
   <teleport to="body">
     <div v-if="isLoading" class="loader-wrapper">
