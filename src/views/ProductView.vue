@@ -1,19 +1,15 @@
 <script setup lang="ts">
 import api from '@/api'
-import { ProductFull } from '@/helpers/types'
+import ProductEntity from '@/entites/Product.entity'
 
 const props = defineProps<{ id: string }>()
 
-const product = ref<ProductFull>()
-
-const images = computed(() => {
-  return product.value?.images || []
-})
+const product = ref<ProductEntity>()
 
 const fetchProduct = () => {
   return api.products.getSingleProduct(props.id, {
     onSuccess: res => {
-      product.value = res
+      product.value = new ProductEntity(res)
     }
   })
 }
@@ -34,7 +30,7 @@ onMounted(async () => {
         <div class="carousel">
           <el-carousel trigger="click" height="320px" :autoplay="false">
             <el-carousel-item
-              v-for="(image, i) in images"
+              v-for="(image, i) in product?.images"
               :key="image"
               :label="i + 1"
             >
@@ -42,11 +38,16 @@ onMounted(async () => {
             </el-carousel-item>
           </el-carousel>
         </div>
+
         <div class="product-title">
           <h2>{{ product?.title }}</h2>
+
+          <h3>{{ product?.formattedPrice }}</h3>
+
           <div class="product-tags">
             <el-tag v-for="tag in product?.tags" :key="tag">{{ tag }}</el-tag>
           </div>
+
           <el-rate
             v-if="product?.rating"
             v-model="product.rating"
@@ -82,12 +83,29 @@ onMounted(async () => {
 
       .carousel {
         width: 400px;
+
+        :deep(.el-carousel__button) {
+          padding: 0;
+          background-color: unset;
+          margin: 0 4px;
+          span {
+            display: block;
+            background-color: lightgray;
+            width: 16px;
+            height: 16px;
+            line-height: 1.4em;
+            border-radius: 50%;
+          }
+        }
       }
 
       .product-title {
         h2 {
           font-weight: 700;
           font-size: 2em;
+        }
+        h3 {
+          font-size: 1.3em;
         }
         .product-tags {
           display: flex;

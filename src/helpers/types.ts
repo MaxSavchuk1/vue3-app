@@ -22,7 +22,7 @@ export type User = {
   age: string | number
 }
 
-type Address = {
+export type Address = {
   address: string
   city: string
   state: string
@@ -35,49 +35,11 @@ type Address = {
   country: string
 }
 
-export type UserFull = User & {
-  maidenName: string
-  gender: string
-  email: string
-  phone: string
-  username: string
-  password: string
-  birthDate?: string
-  image?: string
-  bloodGroup?: string
-  height?: number
-  weight?: number
-  eyeColor?: string
-  hair?: {
-    color: string
-    type: string
-  }
-  ip: string
-  address?: Address
-  macAddress: string
-  university?: string
-  bank?: {
-    cardExpire: string
-    cardNumber: string
-    cardType: string
-    currency: string
-    iban: string
-  }
-  company?: {
-    department: string
-    name: string
-    title: string
-    address: Address
-  }
-  ein: string
-  ssn: string
-  userAgent: string
-  crypto?: {
-    coin: string
-    wallet: string
-    network: string
-  }
-  role: 'admin' | 'moderator' | 'user'
+export type Company = {
+  department: string
+  name: string
+  title: string
+  address: Address
 }
 
 export type Product = {
@@ -87,20 +49,12 @@ export type Product = {
   thumbnail: string
 }
 
-export type ProductFull = Product & {
-  brand?: string
-  category?: string
-  description?: string
-  dimentions?: {
-    height: number
-    width: number
-    depth: number
-  }
-  discountPercentage?: number
-  images?: string[]
-  rating?: number
-  stock?: number
-  tags?: string[]
+export type Review = {
+  rating: number
+  comment: string
+  date: string
+  reviewerName: string
+  reviewerEmail: string
 }
 
 export type ProductsCategory = {

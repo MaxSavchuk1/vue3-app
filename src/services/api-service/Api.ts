@@ -8,7 +8,6 @@ import { ApiOptions } from '@/helpers/types'
 class Api {
   controller?: AbortController
   service?: AxiosInstance
-  requestConfig?: AxiosRequestConfig
   onRequest: ApiOptions['onRequest']
   onSuccess: ApiOptions['onSuccess']
   onError: ApiOptions['onError']
@@ -87,7 +86,6 @@ class Api {
   }
 
   private request(config: AxiosRequestConfig) {
-    this.requestConfig = config
     this.defineRequestInterceptor().defineResponseInterceptor()
     return this.service?.request(config)
   }
