@@ -13,7 +13,6 @@ const images = computed(() => {
 const fetchProduct = () => {
   return api.products.getSingleProduct(props.id, {
     onSuccess: res => {
-      console.log(res)
       product.value = res
     }
   })
@@ -58,6 +57,7 @@ onMounted(async () => {
           />
         </div>
       </div>
+      <el-divider />
       <div class="product-description">
         <p>{{ product?.description }}</p>
       </div>
