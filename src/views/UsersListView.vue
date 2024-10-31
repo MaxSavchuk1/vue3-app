@@ -63,7 +63,11 @@ onMounted(async () => {
   <div class="users-list-container page-container">
     <h2 style="font-size: 30px">Users</h2>
 
-    <el-input v-model="search" placeholder="Type to search users" clearable />
+    <el-input v-model="search" placeholder="Type to search users" clearable>
+      <template #prefix>
+        <i class="ri-search-line"></i>
+      </template>
+    </el-input>
 
     <el-table
       :data="usersList"
