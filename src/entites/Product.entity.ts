@@ -1,5 +1,5 @@
-import { Review } from '@/helpers/types'
 import Entity from './Entity'
+import type { Review } from '@/helpers/types'
 
 class ProductEntity extends Entity {
   id: string | number = 0

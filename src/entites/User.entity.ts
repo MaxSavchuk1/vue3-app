@@ -1,6 +1,6 @@
 import { FALLBACK_IMAGE } from '@/helpers/constants'
 import Entity from './Entity'
-import { Address, Company } from '@/helpers/types'
+import type { Address, Company } from '@/helpers/types'
 
 class UserEntity extends Entity {
   id: string | number = 0

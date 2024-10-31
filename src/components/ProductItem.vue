@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Product } from '@/helpers/types'
+import type { Product } from '@/helpers/types'
 
 defineProps<{ product: Product }>()
 

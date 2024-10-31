@@ -1,9 +1,9 @@
 import api from '@/services/api-service'
-import { ApiOptions, Query } from '@/helpers/types'
 import {
   PRODUCTS_FETCH_LIMIT as limit,
   PRODUCTS_SELECTED_FIELDS as select
 } from '@/helpers/constants'
+import type { ApiOptions, Query } from '@/helpers/types'
 
 export default {
   getProductsPaginated: (query: Query, options: ApiOptions) => {

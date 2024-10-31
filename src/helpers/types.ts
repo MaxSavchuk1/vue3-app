@@ -1,4 +1,4 @@
-import { RawAxiosRequestHeaders, ResponseType } from 'axios'
+import type { RawAxiosRequestHeaders, ResponseType } from 'axios'
 
 export type ApiOptions = {
   baseURL?: string
