@@ -1,9 +1,9 @@
 import api from '@/services/api-service'
-import { ApiOptions } from '@/helpers/types'
 import {
   USERS_FETCH_LIMIT as limit,
   USERS_SELECTED_FIELDS as select
 } from '@/helpers/constants'
+import type { ApiOptions } from '@/helpers/types'
 
 export default {
   getUsersPaginated: (skip: number, options: ApiOptions) =>

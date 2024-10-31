@@ -1,10 +1,20 @@
-import { RouteRecordRaw } from 'vue-router'
+import users from './routes/users'
+import products from './routes/products'
+import type { RouteRecordRaw } from 'vue-router'
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'Home',
     component: () => import('@/views/HomeView.vue')
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/views/LoginView.vue'),
+    meta: {
+      layout: 'BlankLayout'
+    }
   },
   {
     path: '/:pathMatch(.*)*',
@@ -14,28 +24,8 @@ const routes: RouteRecordRaw[] = [
       layout: 'BlankLayout'
     }
   },
-  {
-    path: '/products',
-    name: 'Products',
-    component: () => import('@/views/ProductsListView.vue')
-  },
-  {
-    path: '/products/:id',
-    name: 'Product',
-    component: () => import('@/views/ProductView.vue'),
-    props: true
-  },
-  {
-    path: '/users',
-    name: 'Users',
-    component: () => import('@/views/UsersListView.vue')
-  },
-  {
-    path: '/users/:id',
-    name: 'User',
-    component: () => import('@/views/UserView.vue'),
-    props: true
-  }
+  ...users,
+  ...products
 ]
 
 export default routes

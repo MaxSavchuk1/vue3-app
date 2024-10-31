@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import api from '@/api'
-import { User } from '@/helpers/types'
 import { USERS_FETCH_LIMIT as limit } from '@/helpers/constants'
+import type { User } from '@/helpers/types'
 
 const { getSignal } = useAbortOnLeave()
 const { skip, currentPage, total, handleChangePage } = usePagination()

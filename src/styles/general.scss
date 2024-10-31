@@ -24,6 +24,10 @@ body,
 
 .page-container {
   padding: 30px;
+
+  @media (max-width: 372px) {
+    padding: 8px;
+  }
 }
 
 .welcome-banner {

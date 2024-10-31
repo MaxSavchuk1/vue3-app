@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import api from '@/api'
-import { ProductsCategory } from '@/helpers/types'
+import type { ProductsCategory } from '@/helpers/types'
 
 const emit = defineEmits(['updateFilter'])
 

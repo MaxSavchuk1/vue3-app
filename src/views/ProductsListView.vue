@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { omit } from 'lodash-es'
 import api from '@/api'
-import { Product, ProductFilter } from '@/helpers/types'
 import { PRODUCTS_FETCH_LIMIT as limit } from '@/helpers/constants'
+import type { Product, ProductFilter } from '@/helpers/types'
 
 const productsList = ref<Product[]>([])
 const category = ref<string | undefined>()
