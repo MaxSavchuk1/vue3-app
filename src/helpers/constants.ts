@@ -14,3 +14,6 @@ export const PRODUCTS_SELECTED_FIELDS = ['id', 'title', 'price', 'thumbnail']
 
 export const FALLBACK_IMAGE =
   'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
+
+export const ACCESS_TOKEN_KEY = 'vue3-app-token'
+export const REFRESH_TOKEN_KEY = 'vue3-app-refresh'

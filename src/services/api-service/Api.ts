@@ -3,6 +3,7 @@ import axios, {
   AxiosRequestConfig,
   AxiosRequestHeaders
 } from 'axios'
+import { ElNotification } from 'element-plus'
 import { ApiOptions } from '@/helpers/types'
 
 class Api {
@@ -19,6 +20,7 @@ class Api {
   timeout: ApiOptions['timeout']
   signal: ApiOptions['signal']
   silent: ApiOptions['silent']
+  successNotification: ApiOptions['successNotification']
   headers: ApiOptions['headers'] = {
     Accept: 'application/json',
     'Content-Type': 'application/json'
@@ -36,6 +38,7 @@ class Api {
     this.silent = options.silent ?? false
     this.timeout = options.timeout || 120000
     this.signal = options.signal
+    this.successNotification = options.successNotification || ''
     this.headers = {
       ...this.headers,
       ...options.headers
@@ -136,9 +139,19 @@ class Api {
         if (!this.silent) {
           useLoaderStore().hide()
         }
+        if (this.successNotification) {
+          ElNotification({
+            message: this.successNotification,
+            type: 'success'
+          })
+        }
         return Promise.resolve(result)
       },
       error => {
+        ElNotification({
+          message: error.message,
+          type: 'error'
+        })
         if (this.onError) {
           this.onError(error)
         }

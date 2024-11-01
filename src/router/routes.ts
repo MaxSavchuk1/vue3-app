@@ -1,12 +1,14 @@
 import users from './routes/users'
 import products from './routes/products'
 import type { RouteRecordRaw } from 'vue-router'
+import middleware from '@/services/middleware-service'
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('@/views/HomeView.vue')
+    component: () => import('@/views/HomeView.vue'),
+    beforeEnter: middleware('auth')
   },
   {
     path: '/login',
