@@ -1,10 +1,22 @@
 import api from '@/services/api-service'
-import type { ApiOptions } from '@/helpers/types'
+import type { ApiOptions, LoginForm } from '@/helpers/types'
+
+const accessTokenExpires = 1
 
 export default {
-  login: (form: { username: string; password: string }, options: ApiOptions) =>
+  login: (form: LoginForm, options: ApiOptions) =>
     api(options).post('/auth/login', {
       ...form,
-      expiresInMins: 30 // optional, default 60
-    })
+      expiresInMins: accessTokenExpires // optional, default 60
+    }),
+  refresh: (refreshToken: string, options: ApiOptions) =>
+    api(options).post('/auth/refresh', {
+      refreshToken,
+      expiresInMins: accessTokenExpires // optional, default 60
+    }),
+  getLoggedUserData: (options: ApiOptions) =>
+    api({
+      ...options,
+      headers: { Authorization: `Bearer ${useAuthStore().accessToken}` }
+    }).get('/auth/me')
 }

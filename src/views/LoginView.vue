@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import type { LoginForm } from '@/helpers/types'
 import type { FormInstance, FormRules } from 'element-plus'
 
-const form = ref({
+const form = ref<LoginForm>({
   username: 'emilys',
   password: 'emilyspass'
 })
@@ -9,8 +10,9 @@ const form = ref({
 const formRef = ref<FormInstance>()
 
 const validateField =
-  (fieldName: string) => (_: any, value: any, callback: any) => {
-    if (value === '') {
+  (fieldName: string) =>
+  (_: any, value: string, callback: (...args: any[]) => void) => {
+    if (value.trim() === '') {
       callback(new Error(`Please input ${fieldName}`))
     } else {
       callback()
@@ -32,9 +34,7 @@ const submitHandler = (formEl: FormInstance | undefined) => {
   formEl.validate(valid => {
     if (valid) {
       console.log('submit!')
-      // useApi().auth.login(form.value, {
-      //   onSuccess: res => console.log(res)
-      // })
+      useAuthStore().signIn(form.value)
     } else {
       console.log('error submit!')
     }

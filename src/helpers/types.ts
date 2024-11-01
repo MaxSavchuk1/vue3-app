@@ -8,6 +8,7 @@ export type ApiOptions = {
   dataOnly?: boolean
   signal?: AbortSignal
   silent?: boolean
+  successNotification?: string
   onRequest?: (...args: any[]) => any
   onSuccess?: (...args: any[]) => any
   onError?: (...args: any[]) => any
@@ -69,3 +70,5 @@ export type ProductFilter = {
 }
 
 export type Query = Record<string, string | number | string[] | undefined>
+
+export type LoginForm = { username: string; password: string }
