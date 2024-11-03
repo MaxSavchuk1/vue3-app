@@ -19,12 +19,15 @@ export const useAuthStore = defineStore('auth-store', () => {
     try {
       await useApi().auth.login(form, {
         successNotification: 'Login successful',
-        onSuccess: res => {
+        onSuccess: async res => {
           setTokens(res)
           authUtils.setAccessToken(res.accessToken)
           authUtils.setRefreshToken(res.refreshToken)
+          await useUserStore().fetchCurrentUser()
           if (intendedRoute.value) {
             router.push(intendedRoute.value)
+          } else {
+            router.push({ name: 'Home' })
           }
         }
       })
@@ -37,14 +40,17 @@ export const useAuthStore = defineStore('auth-store', () => {
     refreshToken.value = undefined
     intendedRoute.value = undefined
     authUtils.clearTokens()
+    router.push({ name: 'Login' })
   }
 
   const refresh = async () => {
     if (!refreshToken.value) return
-    isRefreshing.value = true
     try {
       await useApi().auth.refresh(refreshToken.value, {
         silent: true,
+        onRequest: () => {
+          isRefreshing.value = true
+        },
         onSuccess: res => {
           if (res) return setTokens(res)
           return router.push({ name: 'Login' })

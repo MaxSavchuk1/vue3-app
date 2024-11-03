@@ -1,5 +1,3 @@
-import { cloneDeep } from 'lodash-es'
-
 export default class Entity {
   [key: string]: any
 
@@ -8,6 +6,6 @@ export default class Entity {
   }
 
   clone() {
-    return cloneDeep(this)
+    return structuredClone(toRaw(this))
   }
 }
