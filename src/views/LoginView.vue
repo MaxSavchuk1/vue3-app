@@ -32,12 +32,7 @@ const resetForm = (formEl: FormInstance | undefined) => {
 const submitHandler = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   formEl.validate(valid => {
-    if (valid) {
-      console.log('submit!')
-      useAuthStore().signIn(form.value)
-    } else {
-      console.log('error submit!')
-    }
+    if (valid) useAuthStore().signIn(form.value)
   })
 }
 </script>
@@ -52,7 +47,12 @@ const submitHandler = (formEl: FormInstance | undefined) => {
       </el-form-item>
 
       <el-form-item label="Password" prop="password">
-        <el-input v-model="form.password" type="password" autocomplete="off" />
+        <el-input
+          v-model="form.password"
+          class="password-input"
+          type="password"
+          autocomplete="off"
+        />
       </el-form-item>
 
       <el-form-item>

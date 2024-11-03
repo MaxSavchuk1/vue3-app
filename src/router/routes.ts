@@ -19,6 +19,12 @@ const routes: RouteRecordRaw[] = [
     }
   },
   {
+    path: '/profile',
+    name: 'Profile',
+    component: () => import('@/views/LoggedUserView.vue'),
+    beforeEnter: middleware('auth')
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
     component: () => import('@/views/NotFoundView.vue'),

@@ -1,7 +1,7 @@
 import api from '@/services/api-service'
 import type { ApiOptions, LoginForm } from '@/helpers/types'
 
-const accessTokenExpires = 1
+const accessTokenExpires = 30
 
 export default {
   login: (form: LoginForm, options: ApiOptions) =>
