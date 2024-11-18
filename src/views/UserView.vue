@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import api from '@/api'
-import UserEntity from '@/entites/User.entity'
+import UserEntity from '@/entities/User.entity'
 
 const props = defineProps<{ id: string }>()
 const user = ref<UserEntity>()

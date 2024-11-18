@@ -1,4 +1,4 @@
-import UserEntity from '@/entites/User.entity'
+import UserEntity from '@/entities/User.entity'
 
 export const useUserStore = defineStore('user-store', () => {
   const user = ref<UserEntity>()

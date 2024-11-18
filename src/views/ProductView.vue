@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import api from '@/api'
-import ProductEntity from '@/entites/Product.entity'
+import ProductEntity from '@/entities/Product.entity'
 
 const props = defineProps<{ id: string }>()
 
@@ -25,7 +25,7 @@ onMounted(async () => {
 
 <template>
   <div class="page-container">
-    <div class="product">
+    <div v-show="!!product" class="product">
       <div class="product-general-info">
         <div class="carousel">
           <el-carousel trigger="click" height="320px" :autoplay="false">

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import UserEntity from '@/entites/User.entity'
+import UserEntity from '@/entities/User.entity'
 
 const form = ref<UserEntity>(useUserStore().userData!.clone())
 const isDisabledEditing = ref(true)
